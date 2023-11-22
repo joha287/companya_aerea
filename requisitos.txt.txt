@@ -1,0 +1,36 @@
+Objetivo: Investigar sobre herramientas y plataformas para
+la gestión de versiones; en concreto con Git, Subversion y
+Github. 
+Inicialmente, la idea es poder trabajar (previa instalación)
+con algunas herramientas y repositorios para la Gestión de
+Versiones. 
+1. Git
+2. Github
+3. Subversion
+ENTORNOS DE DESARROLLO INTEGRADOS IDEs
+Se investigará sobre los Sistemas para la Gestión de
+Versiones, Indicando, brevemente:
+ ¿Qué son? 
+ ¿Para qué sirven? 
+Git vs Subversion
+ ¿Qué diferencias hay entre Git y Subversion?
+Crea una tabla con: 
+ 2 ventajas e 2 inconvenientes de usar uno u otro.
+ En qué situaciones se suelen usar uno u otro.
+Buscad una imagen que te ayude a entender la diferencia
+entre uno y otro e inclúyela.
+Resumid, de forma concisa, lo que os transmite la imagen
+en relación al tema
+Git y GitHub
+Ya sabes lo que es Git; ahora bien:
+ ¿Qué es GitHub?
+ Incluye una lista con 3 alternativas a GitHub que
+ofrezcan funcionalidades similares. 
+ Buscad una imagen, o créala, que os ayude a entender
+qué es Github (o una de las alternativas del punto
+anterior) e inclúyela.
+Resumid, de forma concisa, lo que os transmite.
+ Buscad una imagen, o créala, que os ayude a entender
+el funcionamiento colaborativo entre Git y Github.
+Inclúyela.
+Resumid, de forma concisa, lo que os transmite.

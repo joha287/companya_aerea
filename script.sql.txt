@@ -1,0 +1,141 @@
+
+-- -----------------------------------------------------
+-- Schema companya_aerea
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `companya_aerea` ;
+
+-- -----------------------------------------------------
+-- Schema companya_aerea
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `companya_aerea` DEFAULT CHARACTER SET utf8 ;
+USE `companya_aerea` ;
+
+-- -----------------------------------------------------
+-- Table `companya_aerea`.`AVIONES`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `companya_aerea`.`AVIONES` ;
+
+CREATE TABLE IF NOT EXISTS `companya_aerea`.`AVIONES` (
+  `matritula_avion` VARCHAR(45) NOT NULL,
+  `fabricante` VARCHAR(45) NULL,
+  `modelo` VARCHAR(45) NULL,
+  `capacidad` INT NULL,
+  `vuelo en horas` INT NULL,
+  PRIMARY KEY (`matritula_avion`),
+  UNIQUE INDEX `matritula_UNIQUE` (`matritula_avion` ASC) );
+
+
+-- -----------------------------------------------------
+-- Table `companya_aerea`.`VUELOS`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `companya_aerea`.`VUELOS` ;
+
+CREATE TABLE IF NOT EXISTS `companya_aerea`.`VUELOS` (
+  `id_vuelo` INT NOT NULL,
+  `matritula_avion` VARCHAR(45) NOT NULL,
+  `fecha` DATE NULL,
+  `origen` VARCHAR(45) NULL,
+  `destino` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_vuelo`, `matritula_avion`),
+  UNIQUE INDEX `matritula_UNIQUE` (`matritula_avion` ASC),
+  UNIQUE INDEX `id_vuelo_UNIQUE` (`id_vuelo` ASC) ,
+  CONSTRAINT `matricula_avion`
+    FOREIGN KEY (`matritula_avion`)
+    REFERENCES `companya_aerea`.`AVIONES` (`matritula_avion`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+
+-- -----------------------------------------------------
+-- Table `companya_aerea`.`PASAJERO`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `companya_aerea`.`PASAJERO` ;
+
+CREATE TABLE IF NOT EXISTS `companya_aerea`.`PASAJERO` (
+  `dni_pasajero` VARCHAR(9) NOT NULL,
+  `id_vuelo` INT NOT NULL,
+  `nombre` VARCHAR(100) NULL,
+  `apellidos` VARCHAR(100) NULL,
+  `email` VARCHAR(100) NULL,
+  `numero_asiento` INT NULL,
+  `clase` VARCHAR(45) NULL,
+  PRIMARY KEY (`dni_pasajero`, `id_vuelo`),
+  UNIQUE INDEX `dni_pasajero_UNIQUE` (`dni_pasajero` ASC) ,
+  UNIQUE INDEX `id_vuelo_UNIQUE` (`id_vuelo` ASC) ,
+  INDEX `fk_PASAJERO_VUELOS1_idx` (`id_vuelo` ASC) ,
+  CONSTRAINT `fk_PASAJERO_VUELOS1`
+    FOREIGN KEY (`id_vuelo`)
+    REFERENCES `companya_aerea`.`VUELOS` (`id_vuelo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+
+-- -----------------------------------------------------
+-- Table `companya_aerea`.`PERSONAL`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `companya_aerea`.`PERSONAL` ;
+
+CREATE TABLE IF NOT EXISTS `companya_aerea`.`PERSONAL` (
+  `id_personal` INT NOT NULL,
+  `id_vuelo` INT NOT NULL,
+  `nombre` VARCHAR(100) NULL,
+  `apellido1` VARCHAR(100) NOT NULL,
+  `apelldio2` VARCHAR(100) NULL,
+  PRIMARY KEY (`id_personal`, `id_vuelo`),
+  UNIQUE INDEX `id_vuelo_UNIQUE` (`id_vuelo` ASC) ,
+  UNIQUE INDEX `id_personal_UNIQUE` (`id_personal` ASC) ,
+  CONSTRAINT `id_vuelo`
+    FOREIGN KEY (`id_vuelo`)
+    REFERENCES `companya_aerea`.`VUELOS` (`id_vuelo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+-- -----------------------------------------------------
+-- Data for table `companya_aerea`.`AVIONES`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `companya_aerea`;
+INSERT INTO `companya_aerea`.`AVIONES` (`matritula_avion`, `fabricante`, `modelo`, `capacidad`, `vuelo en horas`) VALUES ('01q', 'motor1', 'deportivo', 450, 25);
+INSERT INTO `companya_aerea`.`AVIONES` (`matritula_avion`, `fabricante`, `modelo`, `capacidad`, `vuelo en horas`) VALUES ('02w', 'motor2', 'elegan', 300, 30);
+INSERT INTO `companya_aerea`.`AVIONES` (`matritula_avion`, `fabricante`, `modelo`, `capacidad`, `vuelo en horas`) VALUES ('03e', 'motor3', 'automatic', 250, 15);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `companya_aerea`.`VUELOS`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `companya_aerea`;
+INSERT INTO `companya_aerea`.`VUELOS` (`id_vuelo`, `matritula_avion`, `fecha`, `origen`, `destino`) VALUES (001, '01q', '2023-04-15', 'madrid', 'roma');
+INSERT INTO `companya_aerea`.`VUELOS` (`id_vuelo`, `matritula_avion`, `fecha`, `origen`, `destino`) VALUES (002, '02w', '2023-06-20', 'paris', 'madrid');
+INSERT INTO `companya_aerea`.`VUELOS` (`id_vuelo`, `matritula_avion`, `fecha`, `origen`, `destino`) VALUES (003, '03e', '2023-10-25', 'roma', 'paris');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `companya_aerea`.`PASAJERO`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `companya_aerea`;
+INSERT INTO `companya_aerea`.`PASAJERO` (`dni_pasajero`, `id_vuelo`, `nombre`, `apellidos`, `email`, `numero_asiento`, `clase`) VALUES ('10234521z', 001, 'maria', 'perez', 'perez_1@hotmail.com', 1, 'turista');
+INSERT INTO `companya_aerea`.`PASAJERO` (`dni_pasajero`, `id_vuelo`, `nombre`, `apellidos`, `email`, `numero_asiento`, `clase`) VALUES ('23456789x', 002, 'clara', 'ramos', 'ramos_2@hotmail.com', 2, 'primera');
+INSERT INTO `companya_aerea`.`PASAJERO` (`dni_pasajero`, `id_vuelo`, `nombre`, `apellidos`, `email`, `numero_asiento`, `clase`) VALUES ('34567891c', 003, 'luis', 'peña', 'peña_3@hotmail.com', 3, 'business');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `companya_aerea`.`PERSONAL`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `companya_aerea`;
+INSERT INTO `companya_aerea`.`PERSONAL` (`id_personal`, `id_vuelo`, `nombre`, `apellido1`, `apelldio2`) VALUES (0001, 001, 'sonia', 'rivera', 'perez');
+INSERT INTO `companya_aerea`.`PERSONAL` (`id_personal`, `id_vuelo`, `nombre`, `apellido1`, `apelldio2`) VALUES (0002, 002, 'rosa', 'gonzales', NULL);
+INSERT INTO `companya_aerea`.`PERSONAL` (`id_personal`, `id_vuelo`, `nombre`, `apellido1`, `apelldio2`) VALUES (0003, 003, 'jose', 'rivas', NULL);
+
+COMMIT;
+
