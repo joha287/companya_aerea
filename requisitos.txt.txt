@@ -34,3 +34,30 @@ Resumid, de forma concisa, lo que os transmite.
 el funcionamiento colaborativo entre Git y Github.
 Inclúyela.
 Resumid, de forma concisa, lo que os transmite.
+
+
+LA ACTIVIDAD 5.4 LA BASE DE DATOS:
+
+Objetivo: Aplicar los conocimientos sobre el modelo Entidad Relación 
+(modelo E/R a partir de ahora), el modelo relacional y el modelo físico 
+poniendo énfasis en las sentencias de alteración de código.
+Sobre la base de datos creada mediante un SGDB MySQL, de la 
+actividad anterior, se pide realizar una adaptación para que 
+contemple los siguientes campos:
+La base de datos tendrá como como “conjunto de caracteres” 
+utf8mb4 y utf8mb4_unicode_ci como “colación”. 
+Se desea que la información sobre la capacidad del avión sea un 
+campo numérico sin signo y con valor máximo de 450
+Se desea que la información sobre la autonomía de vuelo sean 
+un campo numérico sin signo, con un valor máximo de 48 horas. 
+Además, se desea el campo autonomía de vuelo que sea opcional.
+De los trabajadores se desea conocer los apellidos, siendo el segundo 
+de ellos opcional.
+Se validará que el campo asociado al asiento que ocupa el pasajero 
+sea mayor que 0 (usando la restricción CHECK).
+Del tipo de la clase del asiento que ocupa el pasajero (turista, primera 
+o business), se quiere almacenar información del identificador del 
+Tipo; este identificador será un campo numérico autoincremental. 
+Se cambiará el nombre de la tabla asociada a la entidad AVION al 
+nombre T_AEROPLANO.
+
